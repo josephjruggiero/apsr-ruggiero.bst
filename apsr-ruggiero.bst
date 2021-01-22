@@ -556,15 +556,19 @@ FUNCTION {format.lab.names.full}
     { namesleft #0 > }
     { s nameptr "{vv~}{ll}" format.name$ 't :=
       nameptr #1 >
-	{ namesleft #1 >
-	    { ", " * t * }
-	    { t "others" =
-		{ " et~al." * }
-		{ ", \harvardand\ " * t * }
-	      if$
-	    }
-	  if$
-	}
+    { numnames #2 >
+    	{ namesleft #1 >
+    	    { ", " * t * }
+    	    { t "others" =
+    		{ " et~al." * }
+    		{ ", \harvardand\ " * t * }
+    	      if$
+    	    }
+    	  if$
+    	}
+        { " \harvardand\ " * t * }
+        if$
+    }
 	't
       if$
       nameptr #1 + 'nameptr :=
